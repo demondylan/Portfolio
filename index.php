@@ -144,13 +144,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
         <p>Location: Clinton Township, Michigan</p>
 
-        <form action="send_email.php" method="post">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <input type="text" name="subject" placeholder="Subject" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit" class="cta-button">Send Message</button>
-        </form>
+        <form action="" method="post">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="text" name="subject" placeholder="Subject" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit" class="cta-button">Send Message</button>
+</form>
 
         <?php if ($success): ?>
             <p class="success-message">Your message has been sent successfully.</p>
