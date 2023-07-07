@@ -45,11 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->send();
 
         // Redirect back to the portfolio page with a success message
-        header('Location: portfolio.php?success=true');
+        header('Location: index.php?success=true');
         exit;
     } catch (Exception $e) {
         // Redirect back to the portfolio page with an error message
-        header('Location: portfolio.php?success=false');
+        header('Location: index.php?success=false');
         exit;
     }
 }
