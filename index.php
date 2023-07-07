@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <h2>Projects</h2>
                 <div class="project">
-                    <img src="https://gyazo.com/7aa1063bff01a48a2ad9f257eceb4196" alt="Open Table">
+                <img src="https://i.gyazo.com/7aa1063bff01a48a2ad9f257eceb4196.png" alt="Open Table">
                     <div>
                         <h3>Open Table</h3>
                         <p>Create, view, add, or delete restaurants and reviews.</p>
@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
                 <div class="project">
-                    <img src="https://gyazo.com/8b4bf2a9932d2d03b967aa0abf50a466" alt="Spotify">
+                <img src="https://i.gyazo.com/8b4bf2a9932d2d03b967aa0abf50a466.png" alt="Spotify">
                     <div>
                         <h3>Spotify</h3>
                         <p>Create, listen, add, or delete songs and albums.</p>
