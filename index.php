@@ -18,6 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
+    
+    $message .= "\n\nSender's Email: " . $email;
 
     // Create a new PHPMailer instance
     $mail = new PHPMailer(true);
@@ -43,8 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isHTML(false);
         $mail->Subject = $subject;
         $mail->Body    = $message;
-
-        $mail->addReplyTo($email, $name);
         // Send the email
         $mail->send();
 
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <li>Upload your own music if you are a verified artist</li>
                             <li>Used React H5 Audio Player to play music</li>
                         </ul>
-                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="https://spotify-clone-n2tb.onrender.com/" class="project-link">Live Demo</a>
                         <a href="https://github.com/Celvenia/SpotifyClone" class="project-link">GitHub Repo</a>
                     </div>
                 </div>
