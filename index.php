@@ -24,7 +24,7 @@
                 <h1>Dylan Gigante</h1>
                 <h2>Software Engineer</h2>
                 <p>A passionate software engineer experienced in creating web applications. Skilled in HTML, CSS, JavaScript, and Python. Committed to delivering high-quality code and exceptional user experiences.</p>
-                <a href="https://docs.google.com/document/d/1VMIhrsSn4JmnXjPzeoCQ4mDyRYnLG2VKePicssCnT4Y/" class="cta-button">View Resume</a>
+                <a href="https://docs.google.com/document/d/1VMIhrsSn4JmnXjPzeoCQ4mDyRYnLG2VKePicssCnT4Y/" target="_blank" class="cta-button">View Resume</a>
             </div>
         </section>
 
@@ -54,8 +54,8 @@
                             <li>Search through restaurants by name, zip code, city, or food type</li>
                             <li>Tracks distance and sorts from client's location to restaurant's location using Haversine Formula</li>
                         </ul>
-                        <a href="https://dilys-open-table-clone.onrender.com" class="project-link">Live Demo</a>
-                        <a href="https://github.com/demondylan/OpenTable" class="project-link">GitHub Repo</a>
+                        <a href="https://dilys-open-table-clone.onrender.com" target="_blank" class="project-link">Live Demo</a>
+                        <a href="https://github.com/demondylan/OpenTable" target="_blank" class="project-link">GitHub Repo</a>
                     </div>
                 </div>
                 <div class="project">
@@ -82,9 +82,9 @@
                 <p>Email: gigantedylan001@yahoo.com</p>
                 <p>Phone: (586) 295-6887</p>
                 <ul class="social-links">
-                    <li><a href="https://wellfound.com/u/dylan-gigante">Wellfound</a></li>
-                    <li><a href="https://www.linkedin.com/in/dylan-gigante/">LinkedIn</a></li>
-                    <li><a href="https://github.com/demondylan">GitHub</a></li>
+                    <li><a href="https://wellfound.com/u/dylan-gigante" target="_blank">Wellfound</a></li>
+                    <li><a href="https://www.linkedin.com/in/dylan-gigante/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/demondylan" target="_blank">GitHub</a></li>
                 </ul>
                 <p>Location: Clinton Township, Michigan</p>
 
@@ -100,17 +100,19 @@
 
                 <!-- Modal -->
                 <div id="myModal" class="modal">
-                    <div class="modal-content center">
-                        <span class="close">&times;</span>
-                        <form action="" method="post">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                            <input type="email" name="email" placeholder="Your Email" required>
-                            <input type="text" name="subject" placeholder="Subject" required>
-                            <textarea name="message" placeholder="Your Message" required></textarea>
-                            <button type="submit" class="cta-button">Send Message</button>
-                        </form>
-                    </div>
-                </div>
+    <div class="modal-content center">
+        <span class="close">&times;</span>
+        <h2>Leave a Message</h2>
+        <p>I would love to hear from you! Please fill out the form below to send me a message.</p>
+        <form action="" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="cta-button">Send Message</button>
+        </form>
+    </div>
+</div>
             </div>
         </section>
     </main>
@@ -132,7 +134,11 @@
         closeBtn.onclick = function() {
             modal.style.display = "none";
         }
-
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
         // Close the modal when the email is sent successfully
         <?php if ($success): ?>
             modal.style.display = "none";
