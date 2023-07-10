@@ -27,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host       = $_ENV['SMTP_HOST'];
         $mail->SMTPAuth   = true;
-        $mail->Username   = $_ENV['SMTP_USERNAME']; // Your SMTP username
-        $mail->Password   = $_ENV['SMTP_PASSWORD']; // Your SMTP password
+        $mail->Username   = $_ENV['SMTP_USERNAME']; 
+        $mail->Password   = $_ENV['SMTP_PASSWORD']; 
         $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
         $mail->Port       = $_ENV['SMTP_PORT'];
 
@@ -36,8 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->set('X-SES-CONFIGURATION-SET', 'ConfigSet');
 
         // Recipients
-        $mail->setFrom($email, $name);
-        $mail->addAddress('gigantedylan001@gmail.com'); // Set recipient email address
+        $mail->setFrom($_ENV['SMTP_USERNAME'], $name); 
+        $mail->addAddress('gigantedylan001@gmail.com'); 
 
         // Content
         $mail->isHTML(false);
