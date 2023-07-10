@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->set('X-SES-CONFIGURATION-SET', 'ConfigSet');
 
         // Recipients
-        $mail->setFrom($_ENV['SMTP_USERNAME'], $name); 
+        $mail->setFrom($_ENV['SMTP_USERNAME'], 'Dylan Gigante'); 
         $mail->addAddress('gigantedylan001@gmail.com'); 
 
         // Content
@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Subject = $subject;
         $mail->Body    = $message;
 
+        $mail->addReplyTo($email, $name);
         // Send the email
         $mail->send();
 
