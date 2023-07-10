@@ -95,11 +95,12 @@
                 <?php endif; ?>
 
 
+ 
                 <button class="open-modal cta-button">Send Message</button>
 
                 <!-- Modal -->
                 <div id="myModal" class="modal">
-                    <div class="modal-content">
+                    <div class="modal-content center">
                         <span class="close">&times;</span>
                         <form action="" method="post">
                             <input type="text" name="name" placeholder="Your Name" required>
@@ -131,6 +132,11 @@
         closeBtn.onclick = function() {
             modal.style.display = "none";
         }
+
+        // Close the modal when the email is sent successfully
+        <?php if ($success): ?>
+            modal.style.display = "none";
+        <?php endif; ?>
     </script>
 </body>
 </html>
