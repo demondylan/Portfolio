@@ -7,56 +7,60 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-// Set default values for success and error variables
+
 $success = false;
 $error = false;
+$errorMessage = '';
 
-// Check if form is submitted
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
 
-    // Validate form data
+
     if (empty($name) || empty($email) || empty($subject) || empty($message)) {
         $error = true;
+        $errorMessage = 'Please fill in all the required fields.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = true;
+        $errorMessage = 'Please enter a valid email address.';
     } else {
-        // Create a new PHPMailer instance
-        $mail = new PHPMailer(true);
-
         try {
-            // Server settings
-            $mail->isSMTP();
-            $mail->Host       = $_ENV['SMTP_HOST'];
-            $mail->SMTPAuth   = true;
-            $mail->Username   = $_ENV['SMTP_USERNAME']; 
-            $mail->Password   = $_ENV['SMTP_PASSWORD']; 
-            $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
-            $mail->Port       = $_ENV['SMTP_PORT'];
 
-            // Additional settings
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = $_ENV['SMTP_HOST'];
+            $mail->SMTPAuth = true;
+            $mail->Username = $_ENV['SMTP_USERNAME'];
+            $mail->Password = $_ENV['SMTP_PASSWORD'];
+            $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
+            $mail->Port = $_ENV['SMTP_PORT'];
+
+   
             $mail->set('X-SES-CONFIGURATION-SET', 'ConfigSet');
 
-            // Recipients
-            $mail->setFrom($_ENV['SMTP_USERNAME'], 'Dylan'); 
-            $mail->addAddress('gigantedylan001@gmail.com'); 
 
-            // Content
+            $mail->setFrom($_ENV['SMTP_USERNAME'], 'Dylan Gigante');
+            $mail->addAddress('gigantedylan001@gmail.com');
+
+
             $mail->isHTML(false);
             $mail->Subject = $subject;
-            $mail->Body    = $message;
+            $mail->Body = $message . "\n\nSender's Email: " . $email;
 
-            $mail->addReplyTo($email, $name);
-            // Send the email
-            if ($mail->send()) {
-                $success = true;
-            } else {
-                $error = true;
-            }
+
+            $mail->send();
+
+
+            $success = true;
         } catch (Exception $e) {
+
             $error = true;
+            $errorMessage = 'An error occurred while sending the email. Please try again later.';
         }
     }
 }
@@ -64,12 +68,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <nav>
@@ -87,8 +93,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <h1>Dylan Gigante</h1>
                 <h2>Software Engineer</h2>
-                <p>A passionate software engineer experienced in creating web applications. Skilled in HTML, CSS, JavaScript, and Python. Committed to delivering high-quality code and exceptional user experiences.</p>
-                <a href="https://docs.google.com/document/d/1VMIhrsSn4JmnXjPzeoCQ4mDyRYnLG2VKePicssCnT4Y/" target="_blank" class="cta-button">View Resume</a>
+                <p>A passionate software engineer experienced in creating web applications. Skilled in HTML, CSS,
+                    JavaScript, and Python. Committed to delivering high-quality code and exceptional user experiences.
+                </p>
+                <a href="https://docs.google.com/document/d/1VMIhrsSn4JmnXjPzeoCQ4mDyRYnLG2VKePicssCnT4Y/"
+                    target="_blank" class="cta-button">View Resume</a>
             </div>
         </section>
 
@@ -114,12 +123,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h3>Open Table</h3>
                         <p>Create, view, add, or delete restaurants and reviews.</p>
                         <ul>
-                            <li>Converts address into latitude and longitude coordinates when a new restaurant is added</li>
+                            <li>Converts address into latitude and longitude coordinates when a new restaurant is added
+                            </li>
                             <li>Search through restaurants by name, zip code, city, or food type</li>
-                            <li>Tracks distance and sorts from client's location to restaurant's location using Haversine Formula</li>
+                            <li>Tracks distance and sorts from client's location to restaurant's location using
+                                Haversine Formula</li>
                         </ul>
-                        <a href="https://dilys-open-table-clone.onrender.com" target="_blank" class="project-link">Live Demo</a>
-                        <a href="https://github.com/demondylan/OpenTable" target="_blank" class="project-link">GitHub Repo</a>
+                        <a href="https://dilys-open-table-clone.onrender.com" target="_blank" class="project-link">Live
+                            Demo</a>
+                        <a href="https://github.com/demondylan/OpenTable" target="_blank" class="project-link">GitHub
+                            Repo</a>
                     </div>
                 </div>
                 <div class="project">
@@ -155,28 +168,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if ($success): ?>
                     <p class="success-message">Your message has been sent successfully.</p>
                 <?php elseif ($error): ?>
-                    <p class="error-message">Sorry, there was an error sending your message. Please try again later.</p>
+                    <p class="error-message">
+                        <?php echo $errorMessage; ?>
+                    </p>
                 <?php endif; ?>
 
 
- 
+
                 <button class="open-modal cta-button">Send Message</button>
 
                 <!-- Modal -->
                 <div id="myModal" class="modal">
-    <div class="modal-content center">
-        <span class="close">&times;</span>
-        <h2>Leave a Message</h2>
-        <p>I would love to hear from you! Please fill out the form below to send me a message.</p>
-        <form action="" method="post">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <input type="text" name="subject" placeholder="Subject" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit" class="cta-button">Send Message</button>
-        </form>
-    </div>
-</div>
+                    <div class="modal-content center">
+                        <span class="close">&times;</span>
+                        <h2>Leave a Message</h2>
+                        <p>I would love to hear from you! Please fill out the form below to send me a message.</p>
+                        <form action="" method="post">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <input type="text" name="subject" placeholder="Subject" required>
+                            <textarea name="message" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="cta-button">Send Message</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -184,32 +199,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <footer>
         <p>&copy; 2023 Dylan Gigante. All rights reserved.</p>
     </footer>
-    
+
     <script>
         var modal = document.getElementById("myModal");
         var btn = document.querySelector(".open-modal");
         var closeBtn = document.querySelector(".close");
         var contactForm = document.getElementById("contactForm");
 
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
         }
 
-        closeBtn.onclick = function() {
+        closeBtn.onclick = function () {
             modal.style.display = "none";
         }
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
 
-        contactForm.addEventListener("submit", function(event) {
+        contactForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
-      
-            var isSuccess = true; 
+
+            var isSuccess = true;
 
             var successMessage = document.querySelector(".success-message");
             var errorMessage = document.querySelector(".error-message");
@@ -234,4 +249,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     </script>
 </body>
+
 </html>
