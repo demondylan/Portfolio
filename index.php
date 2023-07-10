@@ -81,7 +81,7 @@
                 <h2>Contact</h2>
                 <p>Email: gigantedylan001@yahoo.com</p>
                 <p>Phone: (586) 295-6887</p>
-                <ul>
+                <ul class="social-links">
                     <li><a href="https://wellfound.com/u/dylan-gigante">Wellfound</a></li>
                     <li><a href="https://www.linkedin.com/in/dylan-gigante/">LinkedIn</a></li>
                     <li><a href="https://github.com/demondylan">GitHub</a></li>
@@ -94,13 +94,22 @@
                     <p class="error-message">Sorry, there was an error sending your message. Please try again later.</p>
                 <?php endif; ?>
 
-                <form action="" method="post">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <input type="text" name="subject" placeholder="Subject" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="cta-button">Send Message</button>
-                </form>
+
+                <button class="open-modal cta-button">Send Message</button>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <form action="" method="post">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <input type="text" name="subject" placeholder="Subject" required>
+                            <textarea name="message" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="cta-button">Send Message</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -108,5 +117,20 @@
     <footer>
         <p>&copy; 2023 Dylan Gigante. All rights reserved.</p>
     </footer>
+    
+    <script>
+        // Open the modal when the button is clicked
+        var modal = document.getElementById("myModal");
+        var btn = document.querySelector(".open-modal");
+        var closeBtn = document.querySelector(".close");
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+    </script>
 </body>
 </html>
