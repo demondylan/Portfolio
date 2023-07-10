@@ -7,6 +7,9 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
+// Set default values for success and error variables
+$success = false;
+$error = false;
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -44,13 +47,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Send the email
         $mail->send();
 
-        // Redirect back to the portfolio page with a success message
-        header('Location: index.php?success=true');
-        exit;
+        // Set success message flag
+        $success = true;
     } catch (Exception $e) {
-        // Redirect back to the portfolio page with an error message
-        header('Location: index.php?success=false');
-        exit;
+        // Set error message flag
+        $error = true;
     }
 }
 ?>
@@ -63,6 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<?php if ($success): ?>
+        <p class="success-message">Your message has been sent successfully.</p>
+    <?php elseif ($error): ?>
+        <p class="error-message">Sorry, there was an error sending your message. Please try again later.</p>
+    <?php endif; ?>
+
     <header>
         <nav>
             <ul>
