@@ -1,3 +1,67 @@
+<?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+// Set default values for success and error variables
+$success = false;
+$error = false;
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+    // Validate form data
+    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+        $error = true;
+    } else {
+        // Create a new PHPMailer instance
+        $mail = new PHPMailer(true);
+
+        try {
+            // Server settings
+            $mail->isSMTP();
+            $mail->Host       = $_ENV['SMTP_HOST'];
+            $mail->SMTPAuth   = true;
+            $mail->Username   = $_ENV['SMTP_USERNAME']; 
+            $mail->Password   = $_ENV['SMTP_PASSWORD']; 
+            $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
+            $mail->Port       = $_ENV['SMTP_PORT'];
+
+            // Additional settings
+            $mail->set('X-SES-CONFIGURATION-SET', 'ConfigSet');
+
+            // Recipients
+            $mail->setFrom($_ENV['SMTP_USERNAME'], 'Dylan'); 
+            $mail->addAddress('gigantedylan001@gmail.com'); 
+
+            // Content
+            $mail->isHTML(false);
+            $mail->Subject = $subject;
+            $mail->Body    = $message;
+
+            $mail->addReplyTo($email, $name);
+            // Send the email
+            if ($mail->send()) {
+                $success = true;
+            } else {
+                $error = true;
+            }
+        } catch (Exception $e) {
+            $error = true;
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,10 +186,10 @@
     </footer>
     
     <script>
-        // Open the modal when the button is clicked
         var modal = document.getElementById("myModal");
         var btn = document.querySelector(".open-modal");
         var closeBtn = document.querySelector(".close");
+        var contactForm = document.getElementById("contactForm");
 
         btn.onclick = function() {
             modal.style.display = "block";
@@ -134,15 +198,40 @@
         closeBtn.onclick = function() {
             modal.style.display = "none";
         }
+
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-        // Close the modal when the email is sent successfully
-        <?php if ($success): ?>
+
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+      
+            var isSuccess = true; 
+
+            var successMessage = document.querySelector(".success-message");
+            var errorMessage = document.querySelector(".error-message");
+            if (successMessage) {
+                successMessage.remove();
+            }
+            if (errorMessage) {
+                errorMessage.remove();
+            }
+
+
+            var messageContainer = document.createElement("p");
+            if (isSuccess) {
+                messageContainer.textContent = "Your message has been sent successfully.";
+                messageContainer.classList.add("success-message");
+            } else {
+                messageContainer.textContent = "Sorry, there was an error sending your message. Please try again later.";
+                messageContainer.classList.add("error-message");
+            }
+            document.getElementById("contact").insertBefore(messageContainer, contactForm);
             modal.style.display = "none";
-        <?php endif; ?>
+        });
     </script>
 </body>
 </html>
