@@ -52,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (Exception $e) {
         // Set error message flag
         $error = true;
-    }
+    
+        echo 'Error: ' . $e->getMessage();
 }
 ?>
 <!DOCTYPE html>
