@@ -49,11 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Set success message flag
         $success = true;
-    } catch (Exception $e) {
-        // Set error message flag
-        $error = true;
-    
-        echo 'Error: ' . $e->getMessage();
+} catch (Exception $e) {
+    // Set error message flag
+    $error = true;
+
+    echo 'Error: ' . $e->getMessage();
+}
 }
 ?>
 <!DOCTYPE html>
