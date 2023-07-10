@@ -1,63 +1,3 @@
-<?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-
-// Set default values for success and error variables
-$success = false;
-$error = false;
-
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
-    
-    $message .= "\n\nSender's Email: " . $email;
-
-    // Create a new PHPMailer instance
-    $mail = new PHPMailer(true);
-
-    try {
-        // Server settings
-        $mail->isSMTP();
-        $mail->Host       = $_ENV['SMTP_HOST'];
-        $mail->SMTPAuth   = true;
-        $mail->Username   = $_ENV['SMTP_USERNAME']; 
-        $mail->Password   = $_ENV['SMTP_PASSWORD']; 
-        $mail->SMTPSecure = $_ENV['SMTP_SECURE'];
-        $mail->Port       = $_ENV['SMTP_PORT'];
-
-        // Additional settings
-        $mail->set('X-SES-CONFIGURATION-SET', 'ConfigSet');
-
-        // Recipients
-        $mail->setFrom($_ENV['SMTP_USERNAME'], 'Dylan Gigante'); 
-        $mail->addAddress('gigantedylan001@gmail.com'); 
-
-        // Content
-        $mail->isHTML(false);
-        $mail->Subject = $subject;
-        $mail->Body    = $message;
-        // Send the email
-        $mail->send();
-
-        // Set success message flag
-        $success = true;
-} catch (Exception $e) {
-    // Set error message flag
-    $error = true;
-
-    echo 'Error: ' . $e->getMessage();
-}
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,12 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<?php if ($success): ?>
-        <p class="success-message">Your message has been sent successfully.</p>
-    <?php elseif ($error): ?>
-        <p class="error-message">Sorry, there was an error sending your message. Please try again later.</p>
-    <?php endif; ?>
-
     <header>
         <nav>
             <ul>
@@ -111,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <h2>Projects</h2>
                 <div class="project">
-                <img src="https://i.gyazo.com/7aa1063bff01a48a2ad9f257eceb4196.png" alt="Open Table">
+                    <img src="https://i.gyazo.com/7aa1063bff01a48a2ad9f257eceb4196.png" alt="Open Table">
                     <div>
                         <h3>Open Table</h3>
                         <p>Create, view, add, or delete restaurants and reviews.</p>
@@ -125,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
                 <div class="project">
-                <img src="https://i.gyazo.com/8b4bf2a9932d2d03b967aa0abf50a466.png" alt="Spotify">
+                    <img src="https://i.gyazo.com/8b4bf2a9932d2d03b967aa0abf50a466.png" alt="Spotify">
                     <div>
                         <h3>Spotify</h3>
                         <p>Create, listen, add, or delete songs and albums.</p>
@@ -142,33 +76,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </section>
 
-<section id="contact">
-    <div>
-        <h2>Contact</h2>
-        <p>Email: gigantedylan001@yahoo.com</p>
-        <p>Phone: (586) 295-6887</p>
-        <ul>
-            <li><a href="https://wellfound.com/u/dylan-gigante">Wellfound</a></li>
-            <li><a href="https://www.linkedin.com/in/dylan-gigante/">LinkedIn</a></li>
-            <li><a href="https://github.com/demondylan">GitHub</a></li>
-        </ul>
-        <p>Location: Clinton Township, Michigan</p>
+        <section id="contact">
+            <div>
+                <h2>Contact</h2>
+                <p>Email: gigantedylan001@yahoo.com</p>
+                <p>Phone: (586) 295-6887</p>
+                <ul>
+                    <li><a href="https://wellfound.com/u/dylan-gigante">Wellfound</a></li>
+                    <li><a href="https://www.linkedin.com/in/dylan-gigante/">LinkedIn</a></li>
+                    <li><a href="https://github.com/demondylan">GitHub</a></li>
+                </ul>
+                <p>Location: Clinton Township, Michigan</p>
 
-        <form action="" method="post">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="text" name="subject" placeholder="Subject" required>
-    <textarea name="message" placeholder="Your Message" required></textarea>
-    <button type="submit" class="cta-button">Send Message</button>
-</form>
+                <?php if ($success): ?>
+                    <p class="success-message">Your message has been sent successfully.</p>
+                <?php elseif ($error): ?>
+                    <p class="error-message">Sorry, there was an error sending your message. Please try again later.</p>
+                <?php endif; ?>
 
-        <?php if ($success): ?>
-            <p class="success-message">Your message has been sent successfully.</p>
-        <?php elseif ($error): ?>
-            <p class="error-message">Sorry, there was an error sending your message. Please try again later.</p>
-        <?php endif; ?>
-    </div>
-</section>
+                <form action="" method="post">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="text" name="subject" placeholder="Subject" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+        </section>
     </main>
 
     <footer>
