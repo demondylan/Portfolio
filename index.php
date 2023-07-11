@@ -128,8 +128,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="project">
                     <img src="https://i.gyazo.com/7aa1063bff01a48a2ad9f257eceb4196.png" alt="Open Table">
                     <div>
-                        <h3>Open Table</h3>
-                        <p><a href="https://www.opentable.com/" target="_blank" class="cta-button">Clone of Open Table.</a></p>
+                        <h3>Open Table Clone</h3>
+                        <p><a href="https://www.opentable.com/" target="_blank" class="cta-button">What is Open Table.</a></p>
                         <ul>
                             <li>Converts address into latitude and longitude coordinates when a new restaurant is added
                             </li>
@@ -146,8 +146,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="project">
                     <img src="https://i.gyazo.com/8b4bf2a9932d2d03b967aa0abf50a466.png" alt="Spotify">
                     <div>
-                        <h3>Spotify</h3>
-                        <p><a href="https://open.spotify.com/" target="_blank">Clone of Spotify.</a></p>
+                        <h3>Spotify Clone</h3>
+                        <p><a href="https://open.spotify.com/" target="_blank" class="cta-button">What is Spotify.</a></p>
                         <ul>
                             <li>Search songs by artist name, song name, or album name</li>
                             <li>Upload your own music if you are a verified artist</li>
@@ -167,9 +167,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p>Email: gigantedylan001@yahoo.com</p>
                 <p>Phone: (586) 295-6887</p>
                 <ul class="social-links">
-                    <li><a href="https://wellfound.com/u/dylan-gigante" target="_blank">Wellfound</a></li>
-                    <li><a href="https://www.linkedin.com/in/dylan-gigante/" target="_blank">LinkedIn</a></li>
-                    <li><a href="https://github.com/demondylan" target="_blank">GitHub</a></li>
+                    <li><a href="https://wellfound.com/u/dylan-gigante" target="_blank" class="cta-button">Wellfound</a></li>
+                    <li><a href="https://www.linkedin.com/in/dylan-gigante/" target="_blank" class="cta-button">LinkedIn</a></li>
+                    <li><a href="https://github.com/demondylan" target="_blank" class="cta-button">GitHub</a></li>
                 </ul>
                 <p>Location: Clinton Township, Michigan</p>
 
