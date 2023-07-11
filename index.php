@@ -137,9 +137,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <li>Tracks distance and sorts from client's location to restaurant's location using
                                 Haversine Formula</li>
                         </ul>
-                        <a href="https://dilys-open-table-clone.onrender.com" target="_blank" class="project-link">Live
+                        <a href="https://dilys-open-table-clone.onrender.com" target="_blank" class="cta-button">Live
                             Demo</a>
-                        <a href="https://github.com/demondylan/OpenTable" target="_blank" class="project-link">GitHub
+                        <a href="https://github.com/demondylan/OpenTable" target="_blank" class="cta-button">GitHub
                             Repo</a>
                     </div>
                 </div>
@@ -148,14 +148,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div>
                         <h3>Spotify</h3>
                         <p>Clone of Spotify <a href="https://open.spotify.com/" target="_blank">check it out here.</a></p>
-                        <p>Create, listen, add, or delete songs and albums.</p>
                         <ul>
                             <li>Search songs by artist name, song name, or album name</li>
                             <li>Upload your own music if you are a verified artist</li>
                             <li>Used React H5 Audio Player to play music</li>
                         </ul>
-                        <a href="https://spotify-clone-n2tb.onrender.com/" class="project-link">Live Demo</a>
-                        <a href="https://github.com/Celvenia/SpotifyClone" class="project-link">GitHub Repo</a>
+                        <a href="https://spotify-clone-n2tb.onrender.com/" target="_blank">Live Demo</a>
+                        <a href="https://github.com/Celvenia/SpotifyClone" target="_blank">GitHub Repo</a>
                     </div>
                 </div>
                 <!-- Add more project entries here -->
