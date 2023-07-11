@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <img src="https://i.gyazo.com/7aa1063bff01a48a2ad9f257eceb4196.png" alt="Open Table">
                     <div>
                         <h3>Open Table</h3>
-                        <p>Clone of Open Table <a href="https://www.opentable.com/" target="_blank">check it out here.</a></p>
+                        <p><a href="https://www.opentable.com/" target="_blank" class="cta-button">Clone of Open Table.</a></p>
                         <ul>
                             <li>Converts address into latitude and longitude coordinates when a new restaurant is added
                             </li>
@@ -147,14 +147,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <img src="https://i.gyazo.com/8b4bf2a9932d2d03b967aa0abf50a466.png" alt="Spotify">
                     <div>
                         <h3>Spotify</h3>
-                        <p>Clone of Spotify <a href="https://open.spotify.com/" target="_blank">check it out here.</a></p>
+                        <p><a href="https://open.spotify.com/" target="_blank">Clone of Spotify.</a></p>
                         <ul>
                             <li>Search songs by artist name, song name, or album name</li>
                             <li>Upload your own music if you are a verified artist</li>
                             <li>Used React H5 Audio Player to play music</li>
                         </ul>
-                        <a href="https://spotify-clone-n2tb.onrender.com/" target="_blank">Live Demo</a>
-                        <a href="https://github.com/Celvenia/SpotifyClone" target="_blank">GitHub Repo</a>
+                        <a href="https://spotify-clone-n2tb.onrender.com/" target="_blank" class="cta-button">Live Demo</a>
+                        <a href="https://github.com/Celvenia/SpotifyClone" target="_blank" class="cta-button">GitHub Repo</a>
                     </div>
                 </div>
                 <!-- Add more project entries here -->
