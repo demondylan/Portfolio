@@ -260,3 +260,60 @@ footer {
 .error-message {
   color: red;
 }
+@media (max-width: 767px) {
+  header {
+    text-align: center;
+  }
+  
+  nav ul li {
+    display: block;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  main {
+    padding: 10px;
+  }
+  
+  a.cta-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  #about div {
+    max-width: none;
+  }
+  
+  #skills ul {
+    flex-direction: column;
+  }
+  
+  #projects .project {
+    flex-direction: column;
+  }
+  
+  .project img {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  #contact ul {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  #contact ul li {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  
+  footer {
+    padding: 5px;
+  }
+  
+  .modal-content {
+    max-width: 100%;
+    padding: 20px;
+  }
+}

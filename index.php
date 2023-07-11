@@ -109,6 +109,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li>CSS</li>
                     <li>JavaScript</li>
                     <li>Python</li>
+                    <li>React</li>
+                    <li>Java</li>
+                    <li>Php</li>
+                    <li>Node Js</li>
+                    <li>Sequelize Express</li>
+                    <li>Mysql</li>
+                    <li>Redux</li>
+                    <li>Git</li>
                     <!-- Add more skills here -->
                 </ul>
             </div>
